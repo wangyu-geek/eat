@@ -1,0 +1,29 @@
+# tell docker what version of the docker-compose.yml we're using
+version: '3'
+
+# define the network
+# 定义网络
+networks:
+  web-app-network:
+    ipam:
+      config:
+        # 网络ip
+        - subnet: 172.16.237.0/24
+
+services:
+  docker-eat-nginx:
+      build:
+        context: ./nginx
+      container_name: docker-nginx
+      restart: always
+      tty: true
+      volumes:
+          - ./eat:/home/www/eat
+          - ./nginx/conf.d:/etc/nginx/conf.d
+          - ./nginx/log:/data/log/nginx/
+      networks:
+        web-app-network:
+          ipv4_address: 172.16.238.11
+      ports:
+        - "80:80"
+        - "443:443"
