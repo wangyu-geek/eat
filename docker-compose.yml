@@ -5,16 +5,12 @@ version: '3'
 # 定义网络
 networks:
   web-app-network:
-    ipam:
-      config:
-        # 网络ip
-        - subnet: 172.16.237.0/24
 
 services:
   docker-eat-nginx:
       build:
         context: ./nginx
-      container_name: docker-nginx
+      container_name: docker-eat-nginx
       restart: always
       tty: true
       volumes:
@@ -23,7 +19,17 @@ services:
           - ./nginx/log:/data/log/nginx/
       networks:
         web-app-network:
-          ipv4_address: 172.16.238.11
       ports:
         - "80:80"
         - "443:443"
+
+  docker-eat-go:
+      build:
+        context: ./eat-go
+      container_name: docker-eat-go
+      restart: always
+      tty: true
+      networks:
+        web-app-network:
+      ports:
+        - "8080:8080"
