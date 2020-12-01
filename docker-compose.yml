@@ -15,13 +15,12 @@ services:
       tty: true
       volumes:
           - ./eat:/home/www/eat
-          - ./nginx/conf.d:/etc/nginx/conf.d
+          - ./nginx/conf.d/eat.conf:/etc/nginx/conf.d/eat.conf
           - ./nginx/log:/data/log/nginx/
       networks:
         web-app-network:
       ports:
         - "80:80"
-        - "443:443"
 
   docker-eat-go:
       build:
