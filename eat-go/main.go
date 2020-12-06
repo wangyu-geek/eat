@@ -1,24 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"eat/conf"
+	"eat/server"
 )
 
-type EatService struct {
-}
-
-func (eat EatService) ServeComm(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "%s", "What do you want to eat?")
-}
-
-func (eat EatService) ServeHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "%s", "I want to eat breakfast")
-}
-
 func main() {
-	var eat EatService
-	http.HandleFunc("/", eat.ServeComm)
-	http.HandleFunc("/hello", eat.ServeHello)
-	http.ListenAndServe(":8080", nil)
+	//读取配置
+	conf.Init()
+
+	// 装载路由
+	r := server.NewRouter()
+	r.Run(":8080")
 }

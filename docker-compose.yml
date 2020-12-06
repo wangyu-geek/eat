@@ -28,6 +28,8 @@ services:
       container_name: docker-eat-go
       restart: always
       tty: true
+      volumes:
+        - ./eat-go:/home/www/eat-go
       networks:
         web-app-network:
       ports:
