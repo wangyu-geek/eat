@@ -4,5 +4,6 @@ import "gorm.io/gorm"
 
 type Shop struct {
 	gorm.Model
-	Name string
+	MenuId uint
+	Name   string
 }

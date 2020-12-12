@@ -1,12 +1,12 @@
 package api
 
 import (
-	"eat/service"
+	"eat/service/shop"
 	"github.com/gin-gonic/gin"
 )
 
 func CreateShop(c *gin.Context) {
-	var service service.CreateShopService
+	var service shop.CreateShopService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.Create()
 		c.JSON(200, res)

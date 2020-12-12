@@ -19,6 +19,9 @@ func NewRouter() *gin.Engine {
 		v1.GET("shops", api.ListShop)         //店铺列表
 		v1.PUT("shop/:id", api.UpdateShop)    //更新店铺
 		v1.DELETE("shop/:id", api.DeleteShop) //删除店铺
+
+		v1.POST("menu", api.CreateMenu) //创建菜单
+		v1.GET("menus", api.ListMenu)   //菜单列表
 	}
 
 	return r

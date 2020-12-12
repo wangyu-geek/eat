@@ -23,6 +23,8 @@ type TrackedErrorResponse struct {
 const (
 	// CodeCheckLogin 未登录
 	CodeCheckLogin = 401
+	// CodeNotFound 数据不存在
+	CodeNotFound = 404
 	// CodeNoRightErr 未授权访问
 	CodeNoRightErr = 403
 	// CodeDBError 数据库操作失败

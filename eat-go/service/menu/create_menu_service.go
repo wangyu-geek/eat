@@ -1,27 +1,27 @@
-package service
+package menu
 
 import (
 	"eat/model"
 	"eat/serializer"
 )
 
-type CreateShopService struct {
+type CreateMenuService struct {
 	Name string `json:"name" form:"name" binding:"required,min=1,max=30"`
 }
 
-func (service *CreateShopService) Create() serializer.Response {
-	shop := model.Shop{
+func (service *CreateMenuService) CreateMenu() serializer.Response {
+	menu := model.Menu{
 		Name: service.Name,
 	}
-	if err := model.DB.Create(&shop).Error; err != nil {
+	if err := model.DB.Create(&menu).Error; err != nil {
 		return serializer.Response{
 			Code:  serializer.CodeDBError,
-			Msg:   "商铺创建失败",
+			Msg:   "菜单创建失败",
 			Error: err.Error(),
 		}
 	}
 
 	return serializer.Response{
-		Data: serializer.BuildShop(shop),
+		Data: serializer.BuildMenu(menu),
 	}
 }

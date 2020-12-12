@@ -2,5 +2,6 @@ package model
 
 func migration() {
 	DB.AutoMigrate(&Shop{})
-	DB.AutoMigrate(&Footer{})
+	DB.AutoMigrate(&FootPrint{})
+	DB.AutoMigrate(&Menu{})
 }
